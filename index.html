@@ -280,7 +280,141 @@ body{
 .song-src{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--paper-faint);white-space:nowrap}
 .follow-row{display:flex;gap:.9rem;flex-wrap:wrap;margin-top:2.2rem}
 
-/* ---------- cast ---------- */
+/* ---------- staged player ---------- */
+.staged{margin-top:3.6rem}
+.staged-label{
+  font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--pink);margin-bottom:.5rem;
+  display:flex;align-items:center;gap:.8rem;
+}
+.staged-label::before{content:"";width:2.2rem;height:1px;background:var(--pink)}
+.staged-title{
+  font-family:'Bungee',cursive;font-weight:400;
+  font-size:clamp(1.4rem,3.6vw,2.2rem);line-height:1.15;margin-bottom:.6rem;
+}
+.staged-title .accent{color:var(--yellow)}
+.staged-desc{color:var(--paper-dim);max-width:44rem;margin-bottom:1.8rem}
+.stage-player{display:grid;grid-template-columns:1.6fr 1fr;gap:1.2rem;align-items:stretch}
+@media(max-width:820px){.stage-player{grid-template-columns:1fr}}
+.stage-screen{
+  position:relative;border-radius:1.2rem;padding:3px;
+  background:linear-gradient(140deg,var(--pink),var(--orange) 55%,var(--yellow));
+  box-shadow:0 20px 60px rgba(0,0,0,.5);
+}
+.stage-screen .inner{position:relative;border-radius:calc(1.2rem - 3px);overflow:hidden;background:#000;aspect-ratio:16/9}
+.stage-screen iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.stage-list{
+  display:flex;flex-direction:column;border:1px solid var(--line);border-radius:1.2rem;overflow:hidden;
+  background:rgba(255,243,229,.02);
+}
+.stage-item{
+  display:grid;grid-template-columns:auto 1fr auto;gap:.9rem;align-items:center;
+  padding:.85rem 1rem;border:0;border-bottom:1px solid var(--line);background:transparent;
+  color:var(--paper);font-family:inherit;text-align:left;cursor:pointer;
+  transition:background .25s;flex:1;
+}
+.stage-item:last-child{border-bottom:0}
+.stage-item:hover{background:rgba(251,110,194,.07)}
+.stage-item.active{background:rgba(255,88,0,.12)}
+.stage-item:focus-visible{outline:2px solid var(--cyan);outline-offset:-2px}
+.stage-item .snum{font-family:'Space Mono',monospace;font-size:.72rem;font-weight:700;color:var(--orange);letter-spacing:.06em}
+.stage-item .sname{font-weight:700;font-size:.95rem;line-height:1.3}
+.stage-item .sname small{display:block;font-weight:400;color:var(--paper-faint);font-size:.74rem;font-family:'Space Mono',monospace;letter-spacing:.08em;margin-top:.15rem}
+.stage-item .sstate{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--paper-faint)}
+.stage-item.active .sstate{color:var(--orange)}
+.autoplay-note{
+  font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--paper-faint);margin-top:.9rem;display:flex;align-items:center;gap:.5rem;
+}
+.autoplay-note .dot{width:.5rem;height:.5rem;border-radius:50%;background:var(--cyan);animation:blink 1.6s infinite}
+
+/* ---------- contact ---------- */
+#contact{background:linear-gradient(180deg,var(--ink),var(--ink-2))}
+.contact-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(2rem,6vw,4rem);align-items:start}
+@media(max-width:820px){.contact-grid{grid-template-columns:1fr}}
+.contact-card{
+  border:1px solid var(--line);border-radius:1.2rem;padding:1.6rem;
+  background:rgba(255,243,229,.03);
+}
+.contact-card h3{
+  font-family:'Space Mono',monospace;font-size:.78rem;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--cyan);margin-bottom:.6rem;
+}
+.contact-card p{color:var(--paper-dim);font-size:.98rem;margin-bottom:1rem}
+.contact-form{display:flex;flex-direction:column;gap:.8rem}
+.contact-form label{font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--paper-faint)}
+.contact-form input[type=text],.contact-form input[type=email],.contact-form textarea{
+  background:var(--ink);border:1px solid var(--line);border-radius:.6rem;
+  color:var(--paper);font-family:inherit;font-size:1rem;padding:.75rem .9rem;
+  transition:border-color .25s;
+}
+.contact-form input:focus,.contact-form textarea:focus{outline:none;border-color:var(--cyan)}
+.contact-form textarea{min-height:6.5rem;resize:vertical}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  font-family:'Space Mono',monospace;font-size:.85rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;text-decoration:none;
+  padding:.85rem 1.7rem;border-radius:9999px;border:0;cursor:pointer;
+  background:var(--orange);color:var(--ink);
+  transition:transform .3s var(--ease-out-back),background .25s;
+}
+.btn:hover{transform:translateY(-3px);background:var(--yellow)}
+.form-status{font-family:'Space Mono',monospace;font-size:.78rem;letter-spacing:.08em;color:var(--cyan);min-height:1.2em}
+.email-big{
+  font-family:'Bungee',cursive;font-weight:400;font-size:clamp(1.1rem,3.2vw,1.7rem);
+  color:var(--paper);text-decoration:none;border-bottom:2px solid var(--orange);
+  transition:color .25s,border-color .25s;word-break:break-all;
+}
+.email-big:hover{color:var(--yellow);border-color:var(--yellow)}
+
+/* ---------- signup modal ---------- */
+.modal{
+  position:fixed;inset:0;z-index:80;display:grid;place-items:center;
+  padding:1.25rem;background:rgba(7,13,31,.78);backdrop-filter:blur(6px);
+  opacity:0;pointer-events:none;transition:opacity .35s var(--ease-out-gentle);
+}
+.modal.open{opacity:1;pointer-events:auto}
+.modal-card{
+  width:min(460px,100%);border-radius:1.4rem;padding:3px;
+  background:linear-gradient(130deg,var(--cyan),var(--navy) 40%,var(--orange));
+  transform:translateY(26px) scale(.96);transition:transform .45s var(--ease-out-back);
+}
+.modal.open .modal-card{transform:none}
+.modal-inner{
+  border-radius:calc(1.4rem - 3px);background:var(--ink-2);
+  padding:2rem 1.8rem 1.8rem;position:relative;
+}
+.modal-inner img{width:72px;height:72px;border-radius:50%;display:block;margin-bottom:1rem}
+.modal-inner h2{
+  font-family:'Bungee',cursive;font-weight:400;font-size:1.45rem;
+  line-height:1.15;margin-bottom:.6rem;
+}
+.modal-inner h2 .accent{color:var(--orange)}
+.modal-inner>p{color:var(--paper-dim);font-size:.95rem;margin-bottom:1.3rem}
+.modal-close{
+  position:absolute;top:.8rem;right:.8rem;width:2.2rem;height:2.2rem;border-radius:50%;
+  border:1px solid var(--line);background:transparent;color:var(--paper-dim);
+  font-size:1.1rem;cursor:pointer;line-height:1;transition:color .25s,border-color .25s;
+}
+.modal-close:hover{color:var(--yellow);border-color:var(--yellow)}
+.modal-close:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.modal-form{display:flex;flex-direction:column;gap:.7rem}
+.modal-form input[type=email]{
+  background:var(--ink);border:1px solid var(--line);border-radius:.6rem;
+  color:var(--paper);font-family:inherit;font-size:1rem;padding:.8rem 1rem;
+}
+.modal-form input[type=email]:focus{outline:none;border-color:var(--cyan)}
+.modal-skip{
+  background:none;border:0;color:var(--paper-faint);cursor:pointer;
+  font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.14em;
+  text-transform:uppercase;padding:.6rem;margin-top:.2rem;
+  transition:color .25s;
+}
+.modal-skip:hover{color:var(--paper)}
+.modal-thanks{display:none;text-align:center;padding:1rem 0 .4rem}
+.modal-thanks .big{font-family:'Bungee',cursive;font-size:1.6rem;color:var(--cyan);margin-bottom:.5rem}
+.modal-thanks p{color:var(--paper-dim);font-size:.95rem}
+
 #cast{background:linear-gradient(180deg,var(--ink-2),var(--ink))}
 .cast-group{margin-bottom:3rem}
 .cast-group:last-of-type{margin-bottom:0}
@@ -346,6 +480,7 @@ footer{background:var(--ink);border-top:1px solid var(--line);overflow:hidden}
     <a href="#listen">Listen</a>
     <a href="#script">Script &amp; Music</a>
     <a href="#cast">Characters</a>
+    <a href="#contact">Contact</a>
   </div>
 </nav>
 
@@ -522,6 +657,56 @@ footer{background:var(--ink);border-top:1px solid var(--line);overflow:hidden}
       <div class="script-cta reveal">
         <a class="pill pill-ghost" href="https://purrfect-ocelot-0fa.notion.site/SLOP-The-Musical-3c66987173de813a98bbdebe521920cf" target="_blank" rel="noopener">Full script &amp; score on Notion</a>
       </div>
+
+      <!-- STAGED PLAYER -->
+      <div class="staged reveal">
+        <p class="staged-label">Now playing on the little stage</p>
+        <h3 class="staged-title">Watch the show <span class="accent">pixel-staged</span> — in order</h3>
+        <p class="staged-desc">
+          The whole show is going up scene by scene, staged on a pixel-art proscenium — curtain,
+          footlights, spotlight and all. Press play on the intro and each scene rolls into the next,
+          just like a night at the theater.
+        </p>
+        <div class="stage-player">
+          <div class="stage-screen">
+            <div class="inner">
+              <iframe id="stageFrame"
+                src="https://www.youtube.com/embed/SV9zrEm7qk0?rel=0&enablejsapi=1"
+                title="SLOP: The Musical — pixel-staged scenes"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="stage-list" role="listbox" aria-label="Scenes playlist">
+            <button class="stage-item active" role="option" aria-selected="true" data-vid="SV9zrEm7qk0">
+              <span class="snum">INTRO</span>
+              <span class="sname">Prompt Me, Baby, One More Time!<small>00 — The Prompt</small></span>
+              <span class="sstate">Playing</span>
+            </button>
+            <button class="stage-item" role="option" aria-selected="false" data-vid="oG4XCM0j5KU">
+              <span class="snum">SC. 1</span>
+              <span class="sname">I Think That&rsquo;s Interesting!<small>01 — The Goldfish</small></span>
+              <span class="sstate">Queued</span>
+            </button>
+            <button class="stage-item" role="option" aria-selected="false" data-vid="cRrXyicx5q8">
+              <span class="snum">SC. 2</span>
+              <span class="sname">The Coffee Keeps Dripping<small>02 — The Drip</small></span>
+              <span class="sstate">Queued</span>
+            </button>
+            <button class="stage-item" role="option" aria-selected="false" data-vid="-MIrVagvsW0">
+              <span class="snum">SC. 3</span>
+              <span class="sname">Chef&rsquo;s Kiss<small>03 — The Sale</small></span>
+              <span class="sstate">Queued</span>
+            </button>
+            <button class="stage-item" role="option" aria-selected="false" data-vid="17Fj-gulFbw">
+              <span class="snum">SC. 4</span>
+              <span class="sname">Cuz That&rsquo;s the Thing<small>04 — The Thing</small></span>
+              <span class="sstate">Queued</span>
+            </button>
+          </div>
+        </div>
+        <p class="autoplay-note"><span class="dot" aria-hidden="true"></span> Scenes auto-advance when each one ends — new scenes added as they go up</p>
+      </div>
     </div>
   </section>
 
@@ -566,6 +751,34 @@ footer{background:var(--ink);border-top:1px solid var(--line);overflow:hidden}
       </div>
     </div>
   </section>
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="wrap">
+      <p class="sec-label reveal">Contact</p>
+      <h2 class="sec-title reveal">Talk to the <span class="accent">producer&rsquo;s desk</span></h2>
+      <div class="contact-grid">
+        <div class="reveal">
+          <p style="font-size:clamp(1.1rem,2.4vw,1.35rem);font-weight:600;line-height:1.6;margin-bottom:1.6rem">
+            Producing, licensing, a reading, a workshop, a stage — or just want to tell us
+            the goldfish was your favorite? Barry reads everything.
+          </p>
+          <a class="email-big" href="mailto:barry.floore@gmail.com">barry.floore@gmail.com</a>
+        </div>
+        <div class="contact-card reveal">
+          <h3>Send a note</h3>
+          <p>This opens your own email app with the message addressed and ready — nothing is stored on this site.</p>
+          <form class="contact-form" id="contactForm">
+            <label for="cf-name">Your name</label>
+            <input type="text" id="cf-name" name="name" autocomplete="name" placeholder="Mia Painter">
+            <label for="cf-msg">Message</label>
+            <textarea id="cf-msg" name="message" placeholder="Hi Barry — I run a small theater in…"></textarea>
+            <button class="btn" type="submit">Write the email</button>
+            <p class="form-status" id="cfStatus" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer>
@@ -588,10 +801,32 @@ footer{background:var(--ink);border-top:1px solid var(--line);overflow:hidden}
       <a href="https://purrfect-ocelot-0fa.notion.site/SLOP-The-Musical-3c66987173de813a98bbdebe521920cf" target="_blank" rel="noopener">Full script</a>
       <a href="https://www.youtube.com/@AISloptheMusical" target="_blank" rel="noopener">YouTube</a>
       <a href="https://www.tiktok.com/@b_floore" target="_blank" rel="noopener">TikTok</a>
+      <a href="mailto:barry.floore@gmail.com">Email Barry</a>
       <a href="#top">Back to top</a>
     </div>
   </div>
 </footer>
+
+<!-- SIGNUP MODAL -->
+<div class="modal" id="signupModal" role="dialog" aria-modal="true" aria-labelledby="signupTitle">
+  <div class="modal-card">
+    <div class="modal-inner">
+      <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+      <img src="favicon.png" alt="" width="72" height="72">
+      <h2 id="signupTitle">Stay in <span class="accent">the bowl</span></h2>
+      <p>New scenes are going up as the show grows — songs, staged scenes, and news of wherever SLOP swims next. Want updates?</p>
+      <form class="modal-form" id="signupForm">
+        <input type="email" id="signupEmail" name="email" placeholder="you@example.com" autocomplete="email" aria-label="Your email address" required>
+        <button class="btn" type="submit">Keep me posted</button>
+        <button class="modal-skip" type="button" id="modalSkip">Maybe later</button>
+      </form>
+      <div class="modal-thanks" id="modalThanks">
+        <p class="big">You&rsquo;re on the list!</p>
+        <p>Your email app should open with everything pre-filled — just hit send so Barry knows to add you.</p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
 (function(){
@@ -645,6 +880,102 @@ footer{background:var(--ink);border-top:1px solid var(--line);overflow:hidden}
     });
   },{threshold:.12, rootMargin:'0px 0px -6% 0px'});
   document.querySelectorAll('.reveal').forEach(function(n){ io.observe(n); });
+
+  /* --- staged player: scene playlist with auto-advance --- */
+  var stageFrame = document.getElementById('stageFrame');
+  var stageItems = Array.prototype.slice.call(document.querySelectorAll('.stage-item'));
+  var userPicked = false; // user initiated playback → auto-advance enabled
+
+  function setActiveScene(idx){
+    stageItems.forEach(function(it, i){
+      var on = (i === idx);
+      it.classList.toggle('active', on);
+      it.setAttribute('aria-selected', on ? 'true' : 'false');
+      it.querySelector('.sstate').textContent = on ? 'Playing' : 'Queued';
+    });
+  }
+  function playScene(idx, autoplay){
+    var vid = stageItems[idx].getAttribute('data-vid');
+    setActiveScene(idx);
+    stageFrame.src = 'https://www.youtube.com/embed/' + vid +
+      '?rel=0&enablejsapi=1' + (autoplay ? '&autoplay=1' : '');
+  }
+  stageItems.forEach(function(it, i){
+    it.addEventListener('click', function(){
+      userPicked = true;
+      playScene(i, true);
+    });
+  });
+
+  /* listen for video end → advance to next scene */
+  window.addEventListener('message', function(ev){
+    if(!ev.origin || ev.origin.indexOf('youtube') === -1) return;
+    var data;
+    try{ data = typeof ev.data === 'string' ? JSON.parse(ev.data) : ev.data; }
+    catch(e){ return; }
+    if(data && data.event === 'onStateChange' && data.info === 0 && userPicked){
+      var cur = stageItems.findIndex(function(it){ return it.classList.contains('active'); });
+      var next = cur + 1;
+      if(next < stageItems.length){
+        playScene(next, true);
+      } else {
+        stageItems.forEach(function(it){ it.querySelector('.sstate').textContent = 'Replay'; });
+      }
+    }
+  });
+
+  /* --- contact form: compose a mailto --- */
+  var cf = document.getElementById('contactForm');
+  if(cf){
+    cf.addEventListener('submit', function(ev){
+      ev.preventDefault();
+      var name = document.getElementById('cf-name').value.trim();
+      var msg = document.getElementById('cf-msg').value.trim();
+      var subject = 'SLOP: The Musical — hello from ' + (name || 'a visitor');
+      var body = (name ? ('From: ' + name + '\n\n') : '') + msg +
+        '\n\n— sent from slopthemusical.com';
+      window.location.href = 'mailto:barry.floore@gmail.com?subject=' +
+        encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      document.getElementById('cfStatus').textContent =
+        'Opening your email app… (or write directly: barry.floore@gmail.com)';
+    });
+  }
+
+  /* --- signup modal: once per session --- */
+  var modal = document.getElementById('signupModal');
+  var seen = false;
+  try{ seen = sessionStorage.getItem('slopSignupSeen') === '1'; }catch(e){}
+  function openModal(){
+    modal.classList.add('open');
+    setTimeout(function(){
+      var em = document.getElementById('signupEmail');
+      if(em) em.focus();
+    }, 450);
+  }
+  function closeModal(){
+    modal.classList.remove('open');
+    try{ sessionStorage.setItem('slopSignupSeen', '1'); }catch(e){}
+  }
+  if(!seen){ setTimeout(openModal, 2200); }
+  document.getElementById('modalClose').addEventListener('click', closeModal);
+  document.getElementById('modalSkip').addEventListener('click', closeModal);
+  modal.addEventListener('click', function(ev){ if(ev.target === modal) closeModal(); });
+  document.addEventListener('keydown', function(ev){
+    if(ev.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  });
+  document.getElementById('signupForm').addEventListener('submit', function(ev){
+    ev.preventDefault();
+    var email = document.getElementById('signupEmail').value.trim();
+    if(!email) return;
+    var subject = 'SLOP mailing list — please add me';
+    var body = 'Hi Barry,\n\nPlease add me to the SLOP: The Musical update list.\n\nMy email: ' + email +
+      '\n\n— sent from slopthemusical.com';
+    document.getElementById('signupForm').style.display = 'none';
+    document.getElementById('modalThanks').style.display = 'block';
+    window.location.href = 'mailto:barry.floore@gmail.com?subject=' +
+      encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    setTimeout(closeModal, 6000);
+  });
 })();
 </script>
 </body>
