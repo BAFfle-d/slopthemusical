@@ -307,6 +307,10 @@ body{
   display:flex;flex-direction:column;border:1px solid var(--line);border-radius:1.2rem;overflow:hidden;
   background:rgba(255,243,229,.02);
 }
+@media(min-width:821px){
+  .stage-list{overflow-y:auto;max-height:100%;scrollbar-width:thin;scrollbar-color:var(--navy) transparent}
+  .stage-item{flex:none}
+}
 .stage-item{
   display:grid;grid-template-columns:auto 1fr auto;gap:.9rem;align-items:center;
   padding:.85rem 1rem;border:0;border-bottom:1px solid var(--line);background:transparent;
@@ -701,6 +705,26 @@ footer{background:var(--ink);border-top:1px solid var(--line);overflow:hidden}
             <button class="stage-item" role="option" aria-selected="false" data-vid="17Fj-gulFbw">
               <span class="snum">SC. 4</span>
               <span class="sname">Cuz That&rsquo;s the Thing<small>04 — The Thing</small></span>
+              <span class="sstate">Queued</span>
+            </button>
+            <button class="stage-item" role="option" aria-selected="false" data-vid="q37iCWNOm2U">
+              <span class="snum">SC. 5</span>
+              <span class="sname">Nothing&rsquo;s Real Online — and that&rsquo;s OK!<small>05 — The Office</small></span>
+              <span class="sstate">Queued</span>
+            </button>
+            <button class="stage-item" role="option" aria-selected="false" data-vid="cEOgRDwZyi0">
+              <span class="snum">SC. 6</span>
+              <span class="sname">The Bowl<small>06 — The Bowl · no music</small></span>
+              <span class="sstate">Queued</span>
+            </button>
+            <button class="stage-item" role="option" aria-selected="false" data-vid="8Uxs6QDL8EA">
+              <span class="snum">SC. 7</span>
+              <span class="sname">Open the Context Window Wide<small>07 — The Engine</small></span>
+              <span class="sstate">Queued</span>
+            </button>
+            <button class="stage-item" role="option" aria-selected="false" data-vid="oXu833m6Gpw">
+              <span class="snum">SC. 8</span>
+              <span class="sname">Le Chat, The Velvet Gloved Provocateur<small>08 — Le Chat</small></span>
               <span class="sstate">Queued</span>
             </button>
           </div>
