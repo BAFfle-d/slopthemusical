@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://slopthemusical.com/sitemap.xml
