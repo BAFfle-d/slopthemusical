@@ -342,6 +342,9 @@ body{
 .stage-item .sname small{display:block;font-weight:400;color:var(--paper-faint);font-size:.74rem;font-family:'Space Mono',monospace;letter-spacing:.08em;margin-top:.15rem}
 .stage-item .sstate{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--paper-faint)}
 .stage-item.active .sstate{color:var(--orange)}
+.stage-item.stage-link{text-decoration:none;color:inherit}
+.stage-item.stage-link .sstate{color:var(--cyan)}
+.stage-item.stage-soon{cursor:default;opacity:.55}
 .autoplay-note{
   font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
   color:var(--paper-faint);margin-top:.9rem;display:flex;align-items:center;gap:.5rem;
@@ -533,13 +536,13 @@ footer{background:var(--ink);border-top:1px solid var(--line);overflow:hidden}
     <div class="player-frame">
       <div class="player-inner">
         <iframe
-          src="https://www.youtube.com/embed/9GsVhLOeU-Y?rel=0"
-          title="Prompt Me, Baby, One More Time! — from SLOP: The Musical"
+          src="https://www.youtube.com/embed/qBw3vhY5F2w?rel=0"
+          title="Si Non Llama, Quis? (legacy llama version) — from SLOP: The Musical"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen loading="lazy"></iframe>
       </div>
     </div>
-    <p class="player-caption"><span class="rec" aria-hidden="true"></span> Now playing — “Prompt Me, Baby, One More Time!”</p>
+    <p class="player-caption"><span class="rec" aria-hidden="true"></span> Now playing — “Si Non Llama, Quis?” · the legacy llama cut</p>
   </div>
 
   <div class="pill-row">
@@ -719,7 +722,7 @@ footer{background:var(--ink);border-top:1px solid var(--line);overflow:hidden}
             </button>
             <button class="stage-item" role="option" aria-selected="false" data-vid="cRrXyicx5q8">
               <span class="snum">SC. 2</span>
-              <span class="sname">The Coffee Keeps Dripping<small>02 — The Drip</small></span>
+              <span class="sname">The Coffee Keeps Dripping<small>02 — The Coffeehouse</small></span>
               <span class="sstate">Queued</span>
             </button>
             <button class="stage-item" role="option" aria-selected="false" data-vid="-MIrVagvsW0">
@@ -749,9 +752,39 @@ footer{background:var(--ink);border-top:1px solid var(--line);overflow:hidden}
             </button>
             <button class="stage-item" role="option" aria-selected="false" data-vid="oXu833m6Gpw">
               <span class="snum">SC. 8</span>
-              <span class="sname">Le Chat, The Velvet Gloved Provocateur<small>08 — Le Chat</small></span>
+              <span class="sname">The Claw, the Velvet Glove Provocateur<small>08 — Le Chat</small></span>
               <span class="sstate">Queued</span>
             </button>
+            <button class="stage-item" role="option" aria-selected="false" data-vid="onYpt2Yq6_4">
+              <span class="snum">SC. 9</span>
+              <span class="sname">If Not the Llama, then What?<small>09 — The Llama!</small></span>
+              <span class="sstate">Queued</span>
+            </button>
+            <button class="stage-item" role="option" aria-selected="false" data-vid="c3OC5eWafwI">
+              <span class="snum">SC. 10</span>
+              <span class="sname">Blue Paint<small>10 — The Porch</small></span>
+              <span class="sstate">Queued</span>
+            </button>
+            <a class="stage-item stage-link" href="https://www.tiktok.com/@b_floore/video/7644113593671191838" target="_blank" rel="noopener">
+              <span class="snum">SC. 11</span>
+              <span class="sname">S.W.I.M.S.<small>11 — The Agent &middot; original staging</small></span>
+              <span class="sstate">TikTok &nearr;</span>
+            </a>
+            <button class="stage-item" role="option" aria-selected="false" data-vid="ffj7zNiITiA">
+              <span class="snum">SC. 12</span>
+              <span class="sname">If Not Now, Then When? (Generate)<small>12 — The Output</small></span>
+              <span class="sstate">Queued</span>
+            </button>
+            <div class="stage-item stage-soon" aria-hidden="true">
+              <span class="snum">SC. 13</span>
+              <span class="sname">Does This Look Like Me?<small>13 — The Packet</small></span>
+              <span class="sstate">Soon</span>
+            </div>
+            <a class="stage-item stage-link" href="https://www.tiktok.com/@b_floore/video/7688387025904405791" target="_blank" rel="noopener">
+              <span class="snum">SC. 14</span>
+              <span class="sname">Generate &mdash; the finale<small>14 — The Boardroom</small></span>
+              <span class="sstate">TikTok &nearr;</span>
+            </a>
           </div>
         </div>
         <p class="autoplay-note"><span class="dot" aria-hidden="true"></span> The playlist plays scenes in order, auto-advancing as each one ends — synced with the YouTube playlist, so new scenes appear here as they go up</p>
@@ -934,7 +967,7 @@ footer{background:var(--ink);border-top:1px solid var(--line);overflow:hidden}
 
   /* --- staged player: scene playlist with auto-advance --- */
   var stageFrame = document.getElementById('stageFrame');
-  var stageItems = Array.prototype.slice.call(document.querySelectorAll('.stage-item'));
+  var stageItems = Array.prototype.slice.call(document.querySelectorAll('.stage-item[data-vid]'));
   var userPicked = false; // user initiated playback → auto-advance enabled
 
   function setActiveScene(idx){
