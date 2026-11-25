@@ -693,15 +693,15 @@ footer{background:var(--ink);border-top:1px solid var(--line);overflow:hidden}
         <h3 class="staged-title">Watch the show <span class="accent">pixel-staged</span> — in order</h3>
         <p class="staged-desc">
           The whole show is going up scene by scene, staged on a pixel-art proscenium — curtain,
-          footlights, spotlight and all. Press play on the intro and each scene rolls into the next,
-          just like a night at the theater.
+          footlights, spotlight and all. It plays straight through from the intro — every scene that's up rolls into the next,
+          just like a night at the theater. The buttons below jump you to a specific scene.
         </p>
         <div class="stage-player">
           <div class="stage-screen">
             <div class="inner">
               <iframe id="stageFrame"
-                src="https://www.youtube.com/embed/SV9zrEm7qk0?rel=0&enablejsapi=1"
-                title="SLOP: The Musical — pixel-staged scenes"
+                src="https://www.youtube.com/embed/videoseries?list=PL8YEyEu3hZoHjVnH1FfhhrITnH51teUlC&rel=0"
+                title="SLOP: The Musical — the full pixel-staged show, scene by scene"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowfullscreen></iframe>
             </div>
@@ -754,7 +754,7 @@ footer{background:var(--ink);border-top:1px solid var(--line);overflow:hidden}
             </button>
           </div>
         </div>
-        <p class="autoplay-note"><span class="dot" aria-hidden="true"></span> Scenes auto-advance when each one ends — new scenes added as they go up</p>
+        <p class="autoplay-note"><span class="dot" aria-hidden="true"></span> The playlist plays scenes in order, auto-advancing as each one ends — synced with the YouTube playlist, so new scenes appear here as they go up</p>
         <p class="autoplay-note"><span class="dot" aria-hidden="true"></span> Every scene also has its own page — video, script &amp; lyrics together — pick one from the tracklist above</p>
       </div>
     </div>
@@ -945,11 +945,13 @@ footer{background:var(--ink);border-top:1px solid var(--line);overflow:hidden}
       it.querySelector('.sstate').textContent = on ? 'Playing' : 'Queued';
     });
   }
+  var PLAYLIST = 'PL8YEyEu3hZoHjVnH1FfhhrITnH51teUlC';
   function playScene(idx, autoplay){
     var vid = stageItems[idx].getAttribute('data-vid');
     setActiveScene(idx);
+    /* load the video inside the playlist so the next scene follows in show order */
     stageFrame.src = 'https://www.youtube.com/embed/' + vid +
-      '?rel=0&enablejsapi=1' + (autoplay ? '&autoplay=1' : '');
+      '?list=' + PLAYLIST + '&rel=0&enablejsapi=1' + (autoplay ? '&autoplay=1' : '');
   }
   stageItems.forEach(function(it, i){
     it.addEventListener('click', function(){
@@ -964,14 +966,12 @@ footer{background:var(--ink);border-top:1px solid var(--line);overflow:hidden}
     var data;
     try{ data = typeof ev.data === 'string' ? JSON.parse(ev.data) : ev.data; }
     catch(e){ return; }
-    if(data && data.event === 'onStateChange' && data.info === 0 && userPicked){
+    if(data && data.event === 'onStateChange' && data.info === 0){
+      /* playlist advances natively; just reflect it on the buttons */
       var cur = stageItems.findIndex(function(it){ return it.classList.contains('active'); });
       var next = cur + 1;
-      if(next < stageItems.length){
-        playScene(next, true);
-      } else {
-        stageItems.forEach(function(it){ it.querySelector('.sstate').textContent = 'Replay'; });
-      }
+      if(next < stageItems.length){ setActiveScene(next); }
+      else { stageItems.forEach(function(it){ it.querySelector('.sstate').textContent = 'Replay'; }); }
     }
   });
 
